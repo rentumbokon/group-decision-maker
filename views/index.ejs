@@ -1,0 +1,14 @@
+<% include partials/header %>
+
+<h1>List of Decision Polls</h1>
+<div class="list-group">
+    <% polls.forEach(function(poll){ %>
+        <% if (poll.isHidden === false){ %>
+            <a href="/polls/<%= poll._id %>" class="list-group-item list-group-item-action">
+                <%= poll.question %> (<%= poll.ballots.length %> votes)
+            </a>
+        <% } %>
+    <% }); %>
+</div>
+
+<% include partials/footer %>

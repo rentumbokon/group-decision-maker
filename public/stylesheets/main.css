@@ -1,0 +1,28 @@
+h1{
+    margin-bottom: 30px;
+}
+
+.btn-plus {
+    height: 50px;
+    width: 50px;
+    font-size: 15px;
+}
+
+.btn-collapse-override {
+    border-color: transparent;
+    color: rgb(119,119,119);
+    line-height: 20px;
+    margin: 0;
+    padding: 15px;
+    text-decoration: none;
+    border: 0;
+}
+
+.percentage-text{
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.results-text{
+    padding-top: 7px;
+}

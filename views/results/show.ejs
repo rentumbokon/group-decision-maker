@@ -1,0 +1,75 @@
+<% include ../partials/header %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js"></script>
+
+<!-- Poll Results -->
+<h1><%= poll.question %></h1>
+
+<div class="container">
+    <p class="lead">Out of <strong><%= poll.ballots.length %></strong> votes...</p>
+    <canvas id="chart" width="300" height="300"></canvas>
+    <script>
+    var ctx = document.getElementById("chart").getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: <%- JSON.stringify(poll.options) %>,
+            datasets: [{
+                data: [<%= currResults %>],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(0, 255, 255, 0.2)',
+                    'rgba(238,130,238, 0.2)',
+                    'rgba(245,222,179, 0.2)',
+                    'rgba(192,192,192, 0.2)'
+                    
+                ],  
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(0, 255, 255, 1)',
+                    'rgba(238,130,238, 1)', 
+                    'rgba(245,222,179, 1)',
+                    'rgba(192,192,192, 1)'
+                                       
+                ],
+                borderWidth: 1
+            }]
+        }
+    });
+    </script>    
+    <br>
+    
+    
+    
+    <% var i; %>
+    <% for (i = 0; i < poll.options.length; i++){ %>
+        <div class="row">
+            <div class="col-md-1 col-sm-2 col-xs-3 col-form-label"> 
+                <p class="percentage-text"><%= currResults[i] %>%</p>
+            </div>                
+            <div class="col-md-11 col-sm-10 col-xs-9"> 
+                <p class="results-text"><%= poll.options[i] %></p>
+            </div>
+        </div>
+    <% } %>               
+    <div class="form-group row">
+        <div class="offset-sm-1 col-md-11">
+            <a class="btn btn-sm btn-primary" href="/">Back</a>
+        </div>
+    </div>          
+    <div class="form-group row">
+        <% var dateFormat = {weekday: "short", year: "numeric", month: "short", day: "numeric", hour: "2-digit", minute: "2-digit"} %>
+        <p><small>Poll Created: <%= poll.date.toLocaleTimeString("en-us", dateFormat) %> GMT</small></p>
+    </div>    
+</div>
+        
+<% include ../partials/footer %>

@@ -1,0 +1,25 @@
+<% include partials/header %>
+
+<div class="row">
+    <h1 style="text-align: center;">Create a new Poll</h1>
+    <div style="width: 50%; margin: 25px auto;">
+        <form action="/polls" method="POST">
+            <div class="form-group">
+                <input class="form-control" type="text" name="question" maxlength="100" placeholder="Question" required>
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" name="options" style="overflow: hidden; resize: none;" maxlength="500" rows="10" placeholder="2-10 Options (separate by new line)" required></textarea>
+            </div>
+            <div class="form-group">
+                <label><input type="checkbox" name="isHidden" value="1"> Private</label>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-lg btn-primary btn-block">Poll</button>
+            </div>
+        </form>
+    
+        <a href="/polls">Cancel</a>        
+    </div>
+</div>
+
+<% include partials/footer %>

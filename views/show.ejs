@@ -1,0 +1,36 @@
+<% include partials/header %>
+
+<!-- Vote UI for poll-->
+<h1><%= poll.question %></h1>
+
+<div class="container">
+    <form action="/polls/<%= poll._id %>" method="POST">
+        <% var ballot = 0; %>
+        <% poll.options.forEach(function(option){ %>
+            <div class="form-group row">
+                <div class="col-md-1 col-sm-2 col-xs-3 col-form-label"> 
+                    <input type="number" class="form-control" id="ballot[<%= ballot %>]" name="ballot[<%= ballot %>]" value="0" min="0" max="10">
+                </div>                
+                <div class="col-md-11 col-sm-10 col-xs-9"> 
+                    <label for="ballot[<%= ballot %>]" class="results-text"><%= option %></label>
+                </div>
+            </div>
+            <% ballot++; %>
+        <% }); %>
+        <div class="form-group row">
+            <div class="offset-sm-1 col-md-11">
+                <button class="btn btn-md btn-primary" style="margin-right:1em;">Vote</button>
+                <a class="btn btn-md btn-danger" href="/polls/<%= poll._id %>/results">Results</a>
+            </div>
+        </div>        
+        <div class="form-group row">
+            <% var dateFormat = {weekday: "short", year: "numeric", month: "short", day: "numeric", hour: "2-digit", minute: "2-digit"} %>
+            <p><small>
+                Values will be normalized to be out of 100 in relation to your other values <br>
+                Poll Created: <%= poll.date.toLocaleTimeString("en-us", dateFormat) %> GMT
+            </small></p>
+        </div>        
+    </form>
+</div>
+        
+<% include partials/footer %>
