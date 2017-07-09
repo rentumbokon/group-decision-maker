@@ -8,10 +8,9 @@ var mongoose = require("mongoose");
 var Poll = require("./models/poll");
 var Ballot = require("./models/ballot");
 
-var seedDB = require("./seeds");
+//var seedDB = require("./seeds");
+//seedDB();
 
-
-seedDB();
 mongoose.connect("mongodb://localhost/group-decision-maker", { useMongoClient: true });
 
 app.use(bodyParser.urlencoded({extended: true}));
