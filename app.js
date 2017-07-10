@@ -11,7 +11,9 @@ var Ballot = require("./models/ballot");
 //var seedDB = require("./seeds");
 //seedDB();
 
-mongoose.connect("mongodb://localhost/group-decision-maker", { useMongoClient: true });
+var url = process.env.DATABASEURL || "mongodb://localhost/group-decision-maker";
+mongoose.connect(url, { useMongoClient: true });
+
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
