@@ -26,3 +26,8 @@ h1{
 .results-text{
     padding-top: 7px;
 }
+
+#chart{
+    height: 50% !important;
+    width: 50% !important;
+}
